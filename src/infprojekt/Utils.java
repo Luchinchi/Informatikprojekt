@@ -18,4 +18,30 @@ public class Utils {
       return -1;
     }
   } 
+  public static String loadFileAsString(String path){
+  StringBuilder builder = new StringBuilder();
+
+  //Get file from resources folder
+  FileReader file = null;
+  try {
+    file = new FileReader(Utils.class.getClass().getResource(path).getFile());
+  } catch (FileNotFoundException e1) {
+    e1.printStackTrace();
+  }
+  if(file != null) {
+    try {
+      BufferedReader br = new BufferedReader(file);
+      String line;
+      while((line = br.readLine()) != null) {
+        builder.append(line + "\n");
+      }
+      br.close();
+    } catch(IOException e) {
+      e.printStackTrace();
+    }
+  }
+  return builder.toString();
+} 
+   
+   
 }
